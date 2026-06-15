@@ -75,7 +75,11 @@ decoded_bits = zeros(1, num_bits);
 for i = 1:num_bits
     idx = (i-1)*N + 1 : i*N;
     sample = mean(filtered_signal(idx));
-    decoded_bits(i) = (sample > threshold) ? 1 : 0;
+    if sample > threshold
+        decoded_bits(i) = 1;
+    else
+        decoded_bits(i) = 0;
+    end
 end
 
 % 方法 2: 向量化

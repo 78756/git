@@ -65,7 +65,11 @@ for i = 1 : num_bits
     start_idx = (i-1) * N + 1;
     end_idx = i * N;
     sample_value = mean(filtered_signal(start_idx:end_idx));
-    decoded_bits(i) = (sample_value > threshold) ? 1 : 0;
+    if sample_value > threshold
+        decoded_bits(i) = 1;
+    else
+        decoded_bits(i) = 0;
+    end
 end
 
 % 计算错误率
